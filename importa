@@ -1,0 +1,674 @@
+1. Describe the main components of a computer system and explain the role of
+each.
+Computer system is made up of several main parts that work together to perform basic functions like input, processing, storage, and output. Main components include the motherboard, which connects all components and allows communication with each other. The CPU acts as the brain of the computer and is responsible for executing instructions and doing calculations. RAM is fast, temporary memory that stores data and programs currently in use so the CPU can access them quickly. Storage devices such as HDD or SSD keep data, software, and the operating system permanently, even when the computer is turned off. The GPU handles graphics and is responsible for showing images and videos on the screen. The power supply unit provides electricity to all internal parts. Input and output devices allow users to interact with the computer. Input devices such as the keyboard, mouse, scanner, and microphone are used to enter data, while output devices like the monitor, printer, and speakers show or present the processed information.
+
+2. Explain the architecture and function of I/O ports in microcomputer systems.
+I/O ports are used to connect the CPU with external devices like keyboard, mouse, printer, and sensors. They help the CPU send data to devices and receive data from them, and also check if the device is ready or busy. Each I/O port has its own address, so the CPU knows which device it is talking to. Since external devices are slower than the CPU, I/O ports help control and organize the data transfer so everything works correctly.
+
+3. What are the differences between serial and parallel ports? Provide examples of
+each.
+Serial ports send data one bit at a time over a single line, so they use fewer wires and are simpler. They were commonly used to connect devices like modems, controllers, and COM devices. Parallel ports send many bits at the same time over multiple lines, allowing faster transfer over short distances. They typically use more wires and were used for devices like printers, hard drives, and CD-ROM drives. The main differences are in how data is sent (one bit vs multiple bits), the number of wires, and typical speed and device usage.
+4. Explain the CPU instruction cycle: Fetch → Decode → Execute.	
+The CPU instruction cycle is the basic process the CPU follows to run program instructions. It has three main stages: Fetch, Decode, and Execute. In the Fetch stage, the CPU retrieves the next instruction from memory using the program counter, and stores it in the instruction register. In the Decode stage, the control unit interprets the instruction to determine what action is required. In the Execute stage, the CPU performs the action, such as arithmetic operations, moving data, or changing program flow. This cycle repeats continuously for each instruction while a program runs.
+5. Compare single-core and multicore processor systems in terms of performance.
+ Single-core processor has only one processing unit (core), so it can run only one instruction at a time. This means it can be slower when running many tasks at once or multitasking. A multicore processor has multiple independent cores, so it can run several tasks simultaneously and handle more workload at once. As a result, multicore systems generally deliver better overall performance for multitasking and parallel applications, because they distribute work across cores and complete tasks faster than a single core could alone. Benchmarks show that dual-core/multicore CPUs outperform equivalent single-core CPUs in many real use cases.
+6. What is an Instruction Set Architecture (ISA)? Why is it important for system
+design?
+Instruction Set Architecture (ISA) is set of machine-level instructions, data types, registers, and memory models that a CPU can understand and execute. It acts as the interface between software and hardware: software is written to an ISA, and the processor implementation must follow that ISA to run the software. ISA is important because it determines what a processor can do and how software will run on it. Using a common ISA allows software to be compatible across different processors, enables hardware designers to innovate internally without changing software, and is a fundamental part of system design. 
+7. Explain the difference between RISC and CISC instruction set philosophies
+Compare RISC vs. CISC in terms of instruction complexity, clock cycles, and
+typical applications.
+RISC and CISC are two ways CPU instructions are designed. RISC uses a small set of simple instructions that are easy for the processor to handle quickly. Because instructions are simple and uniform, RISC CPUs can often finish each one in fewer clock cycles and take advantage of techniques like pipelining to boost performance. CISC, on the other hand, uses a larger set of more complex instructions that can do several operations at once, so a single instruction might take multiple clock cycles but reduce the total number of instructions needed in a program. RISC tends to be faster per instruction and simpler, while CISC packs more work into each instruction and has historically been used in general-purpose PCs. 
+
+8. Compare Von Neumann vs. Harvard architecture with respect to memory and
+instruction paths.
+Von Neumann and Harvard architectures are two fundamental CPU memory designs. In Von Neumann architecture, instructions and data share the same memory space and the same pathways, so the CPU must fetch instructions and data one at a time through a single bus, which can create a performance bottleneck. In Harvard architecture, instruction memory and data memory are separate and use separate buses, allowing the CPU to fetch instructions and data simultaneously. This separation can improve speed and efficiency, especially in real-time and embedded systems. Von Neumann is simpler and widely used in general-purpose computers, while Harvard is more common in specialized hardware, microcontrollers, and systems where parallel access improves performance
+9. How does the modified Harvard architecture benefit modern processor design?
+The modified Harvard architecture keeps instruction code and data in separate caches or pathways, allowing the processor to fetch instructions and access data at the same time. This reduces contention between instruction fetch and data operations, which improves overall speed and efficiency compared to a pure shared memory design. Modern CPUs often use separate L1 instruction and data caches, meaning they combine the parallel access advantage of Harvard with the flexibility of accessing code as data when needed. This makes processors faster and better at handling real-time and general-purpose tasks without the bottleneck of a single shared bus.
+10. Explain the CPU performance equation and define CPI, clock frequency, and
+instruction count.
+CPU time is the time during which the CPU is actively executing instructions for a specific program, not including waiting, input/output operations, or idle time. It shows how much actual processing work the CPU does and is used to measure program and system performance.
+CPU execution time = Instruction Count × CPI × Clock Cycle Time. Instruction count is the total number of instructions the program executes. CPI is the average number of clock cycles needed to complete one instruction, and a lower CPI means better efficiency. Clock frequency shows how many cycles the CPU can perform per second, so a higher frequency usually reduces execution time. In general, fewer instructions, lower CPI, and higher clock frequency all help a program run faster.
+. 
+
+11. Explain the CPU performance improvement strategies used in multicore and
+pipelined systems.	
+Modern processors become faster mainly because of pipelining and multicore design. In a pipelined system, the CPU breaks instruction processing into small steps like fetch, decode, and execute, and while one instruction is being executed, the next one is already being prepared. This is similar to an assembly line in a factory and helps the CPU finish more instructions in the same amount of time. In multicore systems, the CPU has more than one core, so it can work on several tasks at the same time instead of switching between them. This is very helpful for multitasking and for programs that are designed to run in parallel. So, pipelining makes each core work faster, and multicore design lets the CPU do more work at once, which together improves overall performance.
+12. Describe and compare CPU machine models: Stack, Accumulator, Register,
+Memory-Memory, Register-Register.
+CPU machine models describe how the CPU gets and uses data. In a stack machine, the CPU takes values from the top of a stack and puts results back on the stack, so instructions are short but less flexible. In an accumulator machine, most operations use one main register called the accumulator, which makes the design simple but causes many memory accesses. In a register-memory machine, instructions can use both registers and memory together, which reduces steps but makes instructions more complex. In a memory-memory machine, all data is taken from and written back to memory, which is simple but slow. In a register-register machine, data is first loaded into registers and all operations happen between registers, making it faster and more efficient, so it is common in modern CPU.
+13. List and explain the common CPU addressing modes used in instruction design.
+It describe the different ways an instruction can tell the CPU where its data is. In immediate addressing, the actual value is written inside the instruction itself, so the CPU does not need to look anywhere else to get it. In direct addressing, the instruction gives the exact memory location of the data, and the CPU goes straight to that address to read it. In register addressing, the data is already stored in a CPU register, which makes access very fast. In indirect addressing, the instruction first points to another location that holds the real address of the data, so the CPU needs an extra step to reach the value. In indexed or base-offset addressing, the final address is found by adding a small number to a register value, which is very useful when working with arrays or repeating data structures. These different modes exist to make programs more flexible while keeping data access reasonably fast.
+
+14. Describe the 5-stage pipeline (IF → ID → EX → MEM → WB) and explain the
+purpose of each stage.
+5 Stage of pipeline is a way the CPU organizes its work so that different parts of several instructions are processed at the same time. In the IF stage, the CPU takes the next instruction from memory using the program counter. In the ID stage, the CPU understands what the instruction means and reads the required registers. In the EX stage, the actual operation is performed, such as doing a calculation or deciding the result of a branch. In the MEM stage, the CPU reads data from memory or writes data to memory if the instruction needs it. In the WB stage, the final result is written back into a register so it can be used by later instructions.Each stage does a small part of the job, and while one instruction is in the execute stage, another can be in decode and another in fetch. This overlap helps the CPU finish more instructions in less time, which improves overall performance.
+15. What are pipeline hazards? Classify them into structural, data, and control
+hazards.	
+Pipeline hazards are situations where the CPU cannot continue running instructions smoothly in the pipeline and has to slow down or wait for a moment. They happen when instructions get in each other’s way while being processed at different stages, so the normal flow of the pipeline is disturbed.
+Structural hazards happen when the hardware is not enough for everything that is happening at the same time. For example, if two instructions both need to use the same memory or the same unit inside the CPU at the same time, one of them has to wait because the resource cannot be shared at that moment.
+Data hazards happen when one instruction depends on the result of another instruction that is still being processed. If the first instruction has not finished producing its result, the next instruction cannot continue yet and must wait, otherwise it would use the wrong value.
+Control hazards are caused by branch or jump instructions. The CPU may start loading the next instruction before it knows whether the program will jump to another place or not. If the decision later turns out to be different, the CPU has to cancel the wrong instructions and start again from the correct place.
+
+16. Explain techniques used to handle pipeline hazards (stalling, forwarding, branch
+prediction, etc.).
+Pipeline hazards cause delays in instruction execution, and CPUs use several techniques to reduce their impact. Stalling is the simplest method, where the pipeline is temporarily paused until the needed data or resource becomes available. Forwarding reduces waiting by sending results directly from one pipeline stage to another instead of waiting for them to be written to registers. For branch-related problems, CPUs use branch prediction, where the processor guesses the next instruction path and continues execution without waiting. If the guess is wrong, the incorrect instructions are discarded and execution restarts from the correct path. These techniques help keep the pipeline active and improve overall CPU performance.
+17. Explain the concept of superscalar execution and how it differs from pipelining.
+Superscalar execution means that a CPU can issue and execute more than one instruction at the same time in a single clock cycle by using multiple execution units inside the processor. The CPU checks instructions and, if they are independent, it sends them to different units to be processed in parallel. Pipelining, on the other hand, allows multiple instructions to be in different stages of execution at the same time, but usually only one new instruction is started per clock cycle. In simple words, pipelining overlaps the steps of many instructions, while superscalar execution actually runs multiple instructions in parallel, which can give higher performance when enough independent instructions are available.
+18. What are out-of-order processors? Compare in-order vs. out-of-order execution
+with performance trade-offs.
+Out-of-order processors are CPUs that do not always execute instructions in the exact order they appear in the program. Instead, they look ahead and execute instructions as soon as their required data and resources are available, even if earlier instructions are still waiting. This helps avoid idle time and keeps the CPU busy. In in-order execution, instructions are executed strictly one after another, so if one instruction is delayed, all following instructions must wait, which can reduce performance. Out-of-order execution improves performance by using hardware to find independent instructions and run them earlier, but it also makes the processor more complex, uses more power, and requires extra logic to make sure the final results are written in the correct program order.
+19. Explain interrupt handling in microprocessor systems. What happens during an
+ISR?
+Interrupt handling is the process where the CPU temporarily stops its current program to respond to an important signal from hardware or software, such as a keyboard input or a timer event. When an interrupt occurs, the CPU saves its current state, including the program counter and important registers, so it can continue later from the same point. Then it jumps to a special function called the Interrupt Service Routine (ISR), which handles the specific event, for example reading input data or resetting a timer. After the ISR finishes its job, the CPU restores the saved state and continues executing the original program as if it was never stopped.
+20. Describe the role of the DMA controller and how it improves system
+Performance.
+ DMA controller allows data to be transferred directly between memory and input/output devices without involving the CPU in every step. Normally, the CPU would have to manage each data transfer, which wastes time and keeps it busy. With DMA, the CPU only sets up the transfer and then continues doing other work while the DMA controller moves the data in the background. When the transfer is finished, the DMA controller sends an interrupt to inform the CPU. This improves system performance by reducing CPU workload and allowing faster data transfer, especially for large amounts of data like disk or network operations.
+
+21. Compare DMA-based data transfer vs. CPU-driven programmed I/O.
+CPU-driven programmed I/O, the CPU controls every step of the data transfer between memory and I/O devices, checking device status and moving each piece of data itself. This keeps the CPU busy and can slow down the system, especially when large amounts of data are transferred. In DMA-based transfer, the CPU only starts the transfer and then the DMA controller moves the data directly between the device and memory without CPU involvement. The CPU can do other tasks while the transfer is happening and is only interrupted when the transfer is finished. As a result, DMA provides better performance and more efficient use of the CPU compared to programmed I/O.
+22. What is SIMD, MIMD, MISD, SİSİD? Provide examples of real systems.
+ SISD means one processor executes one instruction on one data item at a time, like a simple single-core CPU. SIMD means the same instruction is applied to many data items at once, which is common in GPUs and vector units used for graphics and image processing. MISD means multiple instructions operate on the same data, which is very rare and mainly seen in some fault-tolerant safety systems. MIMD means multiple processors execute different instructions on different data at the same time, which is typical in multicore CPUs, servers, and clusters.
+23. Explain how control hazards occur and how branch prediction reduces them.
+SISD means one processor executes one instruction on one data item at a time. A real example is a single-core CPU or a simple microcontroller running one program. SIMD means the same instruction is applied to many data items at the same time. A common example is a GPU, where the same operation is performed on many pixels or numbers in parallel, and also CPU vector units like AVX. MISD means different instructions process the same data stream. This model is very rare, but it can be found in some fault-tolerant safety systems, where the same data is checked in different ways. MIMD means multiple processors or cores execute different instructions on different data at the same time. Examples include multicore CPUs, servers, and computer clusters.
+24. Explain interrupt vs. polling: differences, benefits, and drawbacks.
+Polling is a method where the CPU repeatedly checks devices to see if they need service, which is simple but wastes CPU time and can respond slowly. Interrupts allow devices to signal the CPU only when they need attention, so the CPU can do other work and respond faster to events, but this method is more complex because the CPU must save its state and run an interrupt routine. Overall, polling is easier to implement but inefficient, while interrupts are more efficient and faster but harder to manage.
+
+25. Compare cache mapping techniques: Direct Mapped, Fully Associative, and Set
+Associative (include hit rate and complexity aspects).
+In a direct-mapped cache, each memory block has only one place where it can go in the cache. This makes the cache simple and fast to access, but it also causes more misses because different blocks may keep replacing each other in the same spot, so the hit rate is lower. In a fully associative cache, a memory block can be stored anywhere in the cache, which greatly reduces conflicts and gives a higher hit rate, but the hardware becomes much more complex and expensive because it has to search many locations at once. Set-associative cache is a middle solution, where each block can go to a few places inside a small group called a set. This reduces conflicts compared to direct-mapped and is much easier to build than fully associative, so it gives a good balance between hit rate and hardware complexity.
+26. Describe cache write strategies: Write-Through vs. Write-Back, and explain when
+each is preferable.
+In write-through caching, every time the CPU changes some data, it updates both the cache and the main memory right away, which keeps everything simple and always consistent, but it also means more memory traffic and slower performance. In write-back caching, the CPU first updates only the cache and sends the data to main memory later when the cache block is replaced, which reduces memory access and makes programs run faster, but it also makes the system more complex because it must track which data has been changed. Write-through is better for simple and safety-critical systems, while write-back is preferred in systems where performance is more important.
+
+
+1.	Write an Assembly function sum_range(a, b) that calculates the sum of all integers from a to b (inclusive) using a loop. If a > b, swap them first, then compute.
+%include "io.inc"
+section .text
+global main
+main:
+PRINT_STRING "sum(3, 10) = "
+push dword 3
+push dword 10
+call sum_range
+PRINT_DEC 4, eax
+NEWLINE
+xor eax, eax
+ret
+sum_range:
+push ebp
+mov ebp, esp
+mov eax,[ebp+8]
+mov edx,[ebp+12]
+cmp eax, edx
+jle ok
+xchg eax, edx
+ok:
+xor ecx, ecx
+sum_loop:
+cmp eax, edx
+jg done
+add ecx, eax
+inc eax
+jmp sum_loop
+done:
+mov eax, ecx
+pop ebp
+ret
+%include "io.inc"
+section .text
+global main
+main:
+    PRINT_STRING "sum_range(3, 10) = "
+    mov eax, 10
+    mov edx, 3
+    call sum_range
+    add esp, 8
+    PRINT_DEC 4, eax
+    xor eax, eax
+    ret
+sum_range:
+    cmp eax, edx
+    jle ok
+    xchg eax, edx
+ok:
+    xor ecx, ecx
+sum:
+    cmp eax, edx
+    jg done
+    add ecx, eax
+    inc eax
+    jmp sum
+done:
+    mov eax, ecx
+    ret
+
+
+
+2.	Implement a function count_even(arr, n) in NASM that counts the number of even integers in an array. If n <=0, return 0.
+%include "io.inc"
+section .data
+arr dd 5, 2, 9, 9, -1, 4, 8, 7
+section .text
+global main
+main:
+    PRINT_STRING "count_even(arr, 8) = "
+    push dword 8
+    push dword arr
+    call count_even
+    PRINT_DEC 4, eax
+    xor eax, eax
+    ret
+count_even:
+    push ebp
+    mov ebp, esp
+
+    mov esi, [ebp+8]
+    mov ecx, [ebp+12]
+    xor eax, eax
+
+    cmp ecx, 0
+    jle done
+loop1:
+    mov edx, [esi]
+    test edx, 1
+    jnz skip
+    inc eax
+skip:
+    add esi, 4
+    dec ecx
+    jnz loop1
+done:
+    pop ebp
+    ret
+
+%include "io.inc"
+section .data
+arr dd -8, 10, 2, 3, 4, 5, 6, 7
+section .text
+global main
+main:
+    PRINT_STRING "count_even(arr, 8) = "
+    mov ecx, 8
+    mov esi, arr
+    call count_even
+    add esp, 8
+    PRINT_DEC 4, eax
+    xor eax, eax
+    ret
+count_even:
+    xor eax, eax
+    cmp ecx, 0
+    jle done
+loop1:
+    mov edx, [esi]
+    test edx, 1
+    jnz skip
+    inc eax
+skip:
+    add esi, 4
+    dec ecx
+    jnz loop1
+done:
+    ret
+
+3.	Create a NASM function max_index(arr, n) that returns the index of the first occurrence of the maximum element.
+%include "io.inc"
+section .data
+arr dd 5, 2, 9, 9, -1, 4, 8, 7
+section .text
+global main
+
+main:
+    PRINT_STRING "max_index(arr, 8) = "
+    push dword 8s
+    push dword arr
+    call max_index
+    PRINT_DEC 4, eax
+    NEWLINE
+    xor eax, eax
+    ret
+max_index:
+    push ebp
+    mov ebp, esp
+
+    mov esi, [ebp+8]
+    mov ecx, [ebp+12]
+
+    cmp ecx, 0
+    jg start
+    mov eax, -1
+    jmp done
+start:
+    mov edx, [esi]
+    xor eax, eax
+    mov ebx, 1
+loop1:
+    cmp ebx, ecx
+    jge done
+    mov edi, [esi + ebx*4]
+    cmp edi, edx
+    jle next
+    mov edx, edi
+    mov eax, ebx
+next:
+    inc ebx
+    jmp loop1
+done:
+    mov esp, ebp
+    pop ebp
+    ret
+%include "io.inc"
+section .data
+arr dd -3, 9, 9, 1, 2, 3, 6, 5
+section .text
+global main
+main:
+    PRINT_STRING "max_index(arr, 8) = "
+    mov esi, arr
+    mov ecx, 8
+    call max_index
+    PRINT_DEC 4, eax
+    xor eax, eax
+    ret
+max_index:
+    cmp ecx, 0
+    jg start
+    
+    mov eax, -1
+    jmp done
+start:
+    mov edx, [esi]
+    xor eax, eax
+    mov ebx, 1
+loop1:
+    cmp ebx, ecx
+    jge done
+    mov edi, [esi + ebx*4]
+    cmp edi, edx
+    jle next
+    mov edx, edi
+    mov eax, ebx
+next:
+    inc ebx
+    jmp loop1
+done:
+    ret
+
+5.	Implement an iterative factorial(n) function using a loop (no recursion). Return -1 if n < 0 and 1 if n ==  0.
+%include "io.inc"
+section .text
+global main
+main:
+    PRINT_STRING "factorial(5) = "
+    push dword 5
+    call factorial
+    PRINT_DEC 4, eax
+    NEWLINE
+    xor eax, eax
+    ret
+factorial:
+    push ebp
+    mov ebp, esp
+
+    mov ecx, [ebp+8]
+    cmp ecx, 0
+    jl nega
+    cmp ecx, 0
+    jne calc
+    mov eax, 1
+    jmp done
+calc:
+    mov eax, 1
+loop1:
+    imul eax, ecx
+    dec ecx
+    cmp ecx, 1
+    jge loop1
+    jmp done
+nega:
+    mov eax, -1
+done:
+    pop ebp
+    ret
+%include "io.inc"
+section .text
+global main
+main:
+    PRINT_STRING "factorial(5) = "
+    mov ecx, 5
+    call factorial
+    PRINT_DEC 4, eax
+    NEWLINE
+    xor eax, eax
+    ret
+factorial:
+    cmp ecx, 0
+    jl nega
+    cmp ecx, 0
+    jne calc
+    mov eax, 1
+    jmp done
+calc:
+    mov eax, 1
+loop1:
+    imul eax, ecx
+    dec ecx
+    cmp ecx, 1
+    jge loop1
+    jmp done
+nega:
+    mov eax, -1
+done:
+    ret
+
+7.  Develop a loop-based Assembly function pow_int(base, exp) to compute base^exp. If exp < 0 return 0. If exp == 0 return 1.
+
+%include "io.inc"
+section .text
+global main
+main:
+    PRINT_STRING "power(2, 5) = "
+    push dword 5
+    push dword 2
+    call power
+    PRINT_DEC 4, eax
+    NEWLINE
+    xor eax, eax
+    ret
+power:
+    push ebp
+    mov ebp, esp
+
+    mov ebx, [ebp+8]
+    mov ecx, [ebp+12]
+
+    cmp ecx, 0
+    jl nega
+    cmp ecx, 0
+    jne calc
+    mov eax, 1
+    jmp done
+calc:
+    mov eax, 1
+loop1:
+    imul eax, ebx
+    dec ecx
+    jnz loop1
+    jmp done
+nega:
+    xor eax, eax
+done:
+    pop ebp
+    ret
+%include "io.inc"
+section .text
+global main
+main:
+    PRINT_STRING "power(2, 5) = "
+    mov ecx, 5
+    mov ebx, 2
+    call power
+    PRINT_DEC 4, eax
+    NEWLINE
+    xor eax, eax
+    ret
+power:
+    cmp ecx, 0
+    jl nega
+    cmp ecx, 0
+    jne calc
+    mov eax, 1
+    jmp done
+calc:
+    mov eax, 1
+loop1:
+    imul eax, ebx
+    dec ecx
+    jnz loop1
+    jmp done
+nega:
+    xor eax, eax
+done:
+    ret
+
+
+10.  Create a checksum function array_checksum(arr, n) that loops through a byte array, sums all elements, and returns (sum & 0xFF). If arr == NULL or n <= 0, return 0.
+
+%include "io.inc"
+section .data
+byteArr db 1, 2, 3, 250, 10, 20
+section .text
+global main
+main:
+    PRINT_STRING "array_checksum(byteArr, 6) = "
+    push dword 6
+    push dword byteArr
+    call array_checksum
+    PRINT_DEC 4, eax
+    NEWLINE
+    xor eax, eax
+    ret
+array_checksum:
+    push ebp
+    mov ebp, esp
+
+    mov esi, [ebp+8]
+    mov ecx, [ebp+12]
+
+    test esi, esi
+    jz zero
+    cmp ecx, 0
+    jle zero
+
+    xor eax, eax
+loop1:
+    movzx edx, byte [esi]
+    add eax, edx
+    inc esi
+    dec ecx
+    jnz loop1
+
+    and eax, 255
+    jmp done
+zero:
+    xor eax, eax
+done:
+    mov esp, ebp
+    pop ebp
+    ret
+%include "io.inc"
+section .data
+byteArr db 1, 2, 3, 250, 10, 20
+section .text
+global main
+main:
+    PRINT_STRING "array_checksum(byteArr, 6) = "
+    mov ecx, 6
+    mov esi, byteArr
+    call array_checksum
+    PRINT_DEC 4, eax
+    NEWLINE
+    xor eax, eax
+    ret
+array_checksum:
+    test esi, esi
+    jz zero
+    cmp ecx, 0
+    jle zero
+
+    xor eax, eax
+loop1:
+    movzx edx, byte [esi]
+    add eax, edx
+    inc esi
+    dec ecx
+    jnz loop1
+
+    and eax, 255
+    jmp done
+zero:
+    xor eax, eax
+done:
+    ret
+
+
+
+
+
+3.	Draw the pipeline diagram of the following code 
+Cycle ->   1   2   3   4   5   6   7   8   9   10
+
+I1 ADD     IF  ID  EX  MEM WB
+
+I2 MUL         IF  ID  EX  MEM WB
+
+I3 LW            IF  ID  EX  MEM WB
+
+I4 ADDIU           IF  ID  EX  MEM WB
+
+I5 LW                  IF  ID  EX  MEM WB
+
+I6 ADD                     IF  ID  --  EX  MEM WB
+
+I7 ADDIU                       IF  --  ID  EX  MEM WB
+
+I8 ADDIU                            IF  ID  EX  MEM WB
+
+I9 LW                                         IF  ID  EX  MEM WB
+
+
+
+4.	For the following code snippet, identify all of the RAW, WAW, and WAR hazards.  Provide a list for 
+
+1️⃣ Instruksiyaların oxu / yazı cədvəli
+#	Instruction	Reads (R)	Writes (W)
+I1	ADD R5, R6, R7	R6, R7	R5
+I2	MUL R6, R7, R8	R7, R8	R6
+I3	LW R10, R6(0)	R6	R10
+I4	ADDIU R7, R13, 1	R13	R7
+I5	LW R10, R6(4)	R6	R10
+I6	ADDIU R12, R13, 1	R13	R12
+I7	LW R15, R15(4)	R15	R15
+I8	ADD R6, R9, R10	R9, R10	R6
+I9	ADDIU R10, R10, R11	R10, R11	R10
+2️⃣ RAW hazards (Read After Write)
+
+➡️ Sonrakı instruksiya oxuyur, əvvəlki yazıb
+
+I2 → I3 : R6
+
+I2 → I5 : R6
+
+I3 → I8 : R10
+
+I5 → I8 : R10
+
+I3 → I9 : R10
+
+I5 → I9 : R10
+
+I8 → I9 : R10
+
+I4 → I2 : R7
+
+I4 → I1 : R7
+
+I7 → I7 : R15 (self-dependence, real RAW)
+
+✅ RAW Hazards List
+
+I4 → I1 (R7)
+I4 → I2 (R7)
+I2 → I3 (R6)
+I2 → I5 (R6)
+I3 → I8 (R10)
+I5 → I8 (R10)
+I3 → I9 (R10)
+I5 → I9 (R10)
+I8 → I9 (R10)
+I7 → I7 (R15)
+
+3️⃣ WAW hazards (Write After Write)
+
+➡️ İki instruksiya eyni registrə yazır
+
+I3 ↔️ I5 : R10
+
+I3 ↔️ I9 : R10
+
+I5 ↔️ I9 : R10
+
+I2 ↔️ I8 : R6
+
+I7 ↔️ I7 : R15
+
+✅ WAW Hazards List
+
+I3 → I5 (R10)
+I3 → I9 (R10)
+I5 → I9 (R10)
+I2 → I8 (R6)
+I7 → I7 (R15)
+
+4️⃣ WAR hazards (Write After Read)
+
+➡️ Sonrakı instruksiya yazır, əvvəlki oxumuşdu
+
+I1 → I2 : R6
+
+I1 → I4 : R7
+
+I3 → I2 : R6
+
+I5 → I2 : R6
+
+I8 → I3 : R10
+
+I8 → I5 : R10
+
+I9 → I3 : R10
+
+I9 → I5 : R10
+
+✅ WAR Hazards List
+
+I1 → I2 (R6)
+I1 → I4 (R7)
+I3 → I2 (R6)
+I5 → I2 (R6)
+I8 → I3 (R10)
+I8 → I5 (R10)
+I9 → I3 (R10)
+I9 → I5 (R10)
+
+
+
+RAW: Ən təhlükəli hazard, forwarding/stall tələb edir
+
+WAW: Out-of-order execution-da problem yaradar
+
+WAR: Register renaming ilə aradan qalxır
+
+1.
+Direct-Mapped Cache Task Given 
+Log2 8=3
+log2 16=4
+0x9C3A= 1001 1100 0011 1010
+offset = 010 = 2
+index = 0111 = 7
+tag = 100111000 = 312
+explanation:Since the cache is direct-mapped, the index bits directly select the cache block.
+The index value is 7, therefore cache block 7 is checked.
+The tag stored in block 7 is compared with the address tag to determine hit or miss.
+
+2. Set-Associative Cache Task 
+For a 2-way Set-Associative cache with 8 sets and block size 4 bytes,
+log 2 4 =2
+log 2 8 =3
+0xA7F1 = 1010 0111 1111 0001
+Set index: 100₂ = 4
+Offset: 01₂ = 1
+Tag: 10100111111₂ = 1343₁₀
+Hansı yerlər yoxlanılır: Set 4-ün iki yolu — Way 0 və Way 1 (əgər blokları (set*2+way) ilə nömrələsək: blok 8 və blok 9)
+
