@@ -552,9 +552,9 @@ I6	ADDIU R12, R13, 1	R13	R12
 I7	LW R15, R15(4)	R15	R15
 I8	ADD R6, R9, R10	R9, R10	R6
 I9	ADDIU R10, R10, R11	R10, R11	R10
-2️⃣ RAW hazards (Read After Write)
+2. RAW hazards (Read After Write)
 
-➡️ Sonrakı instruksiya oxuyur, əvvəlki yazıb
+ Sonrakı instruksiya oxuyur, əvvəlki yazıb
 
 I2 → I3 : R6
 
@@ -576,7 +576,7 @@ I4 → I1 : R7
 
 I7 → I7 : R15 (self-dependence, real RAW)
 
-✅ RAW Hazards List
+ RAW Hazards List
 
 I4 → I1 (R7)
 I4 → I2 (R7)
@@ -589,21 +589,21 @@ I5 → I9 (R10)
 I8 → I9 (R10)
 I7 → I7 (R15)
 
-3️⃣ WAW hazards (Write After Write)
+ WAW hazards (Write After Write)
 
-➡️ İki instruksiya eyni registrə yazır
+ İki instruksiya eyni registrə yazır
 
-I3 ↔️ I5 : R10
+I3 <-> I5 : R10
 
-I3 ↔️ I9 : R10
+I3 <-> I9 : R10
 
-I5 ↔️ I9 : R10
+I5 <-> I9 : R10
 
-I2 ↔️ I8 : R6
+I2 <-> I8 : R6
 
-I7 ↔️ I7 : R15
+I7 <-> I7 : R15
 
-✅ WAW Hazards List
+ WAW Hazards List
 
 I3 → I5 (R10)
 I3 → I9 (R10)
@@ -611,9 +611,9 @@ I5 → I9 (R10)
 I2 → I8 (R6)
 I7 → I7 (R15)
 
-4️⃣ WAR hazards (Write After Read)
+4️ WAR hazards (Write After Read)
 
-➡️ Sonrakı instruksiya yazır, əvvəlki oxumuşdu
+ Sonrakı instruksiya yazır, əvvəlki oxumuşdu
 
 I1 → I2 : R6
 
@@ -631,7 +631,7 @@ I9 → I3 : R10
 
 I9 → I5 : R10
 
-✅ WAR Hazards List
+ WAR Hazards List
 
 I1 → I2 (R6)
 I1 → I4 (R7)
