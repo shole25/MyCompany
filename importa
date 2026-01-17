@@ -82,7 +82,10 @@ each is preferable.
 In write-through caching, every time the CPU changes some data, it updates both the cache and the main memory right away, which keeps everything simple and always consistent, but it also means more memory traffic and slower performance. In write-back caching, the CPU first updates only the cache and sends the data to main memory later when the cache block is replaced, which reduces memory access and makes programs run faster, but it also makes the system more complex because it must track which data has been changed. Write-through is better for simple and safety-critical systems, while write-back is preferred in systems where performance is more important.
 
 
+
 1.	Write an Assembly function sum_range(a, b) that calculates the sum of all integers from a to b (inclusive) using a loop. If a > b, swap them first, then compute.
+CDECL:
+
 %include "io.inc"
 section .text
 global main
@@ -115,6 +118,9 @@ done:
 mov eax, ecx
 pop ebp
 ret
+
+Non-CDECL:
+
 %include "io.inc"
 section .text
 global main
@@ -146,6 +152,8 @@ done:
 
 
 2.	Implement a function count_even(arr, n) in NASM that counts the number of even integers in an array. If n <=0, return 0.
+CDECL:
+
 %include "io.inc"
 section .data
 arr dd 5, 2, 9, 9, -1, 4, 8, 7
@@ -182,6 +190,9 @@ done:
     pop ebp
     ret
 
+Non-CDECL:
+
+
 %include "io.inc"
 section .data
 arr dd -8, 10, 2, 3, 4, 5, 6, 7
@@ -213,6 +224,7 @@ done:
     ret
 
 3.	Create a NASM function max_index(arr, n) that returns the index of the first occurrence of the maximum element.
+CDECL:
 %include "io.inc"
 section .data
 arr dd 5, 2, 9, 9, -1, 4, 8, 7
@@ -258,6 +270,9 @@ done:
     mov esp, ebp
     pop ebp
     ret
+
+Non-CDECL:
+
 %include "io.inc"
 section .data
 arr dd -3, 9, 9, 1, 2, 3, 6, 5
@@ -296,6 +311,8 @@ done:
     ret
 
 5.	Implement an iterative factorial(n) function using a loop (no recursion). Return -1 if n < 0 and 1 if n ==  0.
+CDECL:
+
 %include "io.inc"
 section .text
 global main
@@ -331,6 +348,9 @@ nega:
 done:
     pop ebp
     ret
+Non-CDECL:
+
+
 %include "io.inc"
 section .text
 global main
@@ -363,6 +383,8 @@ done:
     ret
 
 7.  Develop a loop-based Assembly function pow_int(base, exp) to compute base^exp. If exp < 0 return 0. If exp == 0 return 1.
+
+CDECL:
 
 %include "io.inc"
 section .text
@@ -401,6 +423,9 @@ nega:
 done:
     pop ebp
     ret
+Non-CDECL:
+
+
 %include "io.inc"
 section .text
 global main
@@ -434,6 +459,8 @@ done:
 
 
 10.  Create a checksum function array_checksum(arr, n) that loops through a byte array, sums all elements, and returns (sum & 0xFF). If arr == NULL or n <= 0, return 0.
+
+CDECL:
 
 %include "io.inc"
 section .data
@@ -477,6 +504,8 @@ done:
     mov esp, ebp
     pop ebp
     ret
+Non-CDECL:
+
 %include "io.inc"
 section .data
 byteArr db 1, 2, 3, 250, 10, 20
@@ -511,7 +540,6 @@ zero:
     xor eax, eax
 done:
     ret
-
 
 
 
